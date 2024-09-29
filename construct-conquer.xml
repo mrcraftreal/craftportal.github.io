@@ -378,8 +378,7 @@ footer a:hover {
 text-decoration: underline;
 }
 </style>
-</head>
-
+<head>
 <body>
 <nav>
 <div class="logo">
