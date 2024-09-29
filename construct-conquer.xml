@@ -13,7 +13,7 @@ body {
 margin: 0;
 font-family: 'Poppins', sans-serif;
 color: white;
-background-color: #000000; /* Hintergrundfarbe schwarz2 */
+background-color: #000000; /* Hintergrundfarbe schwarz */
 padding-bottom: 60px; /* Platz für den Footer schaffen */
 overflow-x: hidden; /* Verhindert horizontales Scrollen */
 }
