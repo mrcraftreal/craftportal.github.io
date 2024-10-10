@@ -1,97 +1,455 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Craftportal • Home</title>
+<title>Craftportal • Construct & Conquer</title>
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-<!-- Laden der reCAPTCHA-Bibliothek -->
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 <style>
 body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    color: white;
-    background-color: #000000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
+margin: 0;
+font-family: 'Poppins', sans-serif;
+color: white;
+background-color: #000000; /* Hintergrundfarbe schwarz */
+padding-bottom: 60px; /* Platz für den Footer schaffen */
+overflow-x: hidden; /* Verhindert horizontales Scrollen */
+}
+
+.background-image-container {
+position: relative;
+width: 100%;
+height: 100vh;
+overflow: hidden;
 }
 
 .background-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('https://i.imghippo.com/files/IiuSo1725198197.png');
-    background-size: cover;
-    background-position: center;
-    z-index: -1;
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-image: url('https://i.imghippo.com/files/IiuSo1725198197.png');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+z-index: -1;
 }
 
-.maintenance-container {
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 30px;
-    border-radius: 10px;
-    max-width: 500px;
+.background-info {
+position: absolute;
+top: 50%;
+left: 5%;
+transform: translateY(-50%);
+color: white;
+text-align: left;
+z-index: 2;
+padding: 30px;
+border-radius: 10px;
+width: 3000px;
 }
 
-.maintenance-container img {
-    width: 400px; /* Logo wurde vergrößert */
-    margin-bottom: 0px;
+.background-info h1 {
+margin: 0;
+font-size: 100px;
 }
 
-.maintenance-container h1 {
-    font-size: 32px;
-    margin-bottom: 20px;
+.background-info p {
+margin: -15px 0;
+font-size: 20px;
 }
 
-.maintenance-container p {
-    font-size: 18px;
-    margin-bottom: 10px;
+.background-info .button-container {
+display: flex;
+flex-direction: column;
 }
 
-.maintenance-container a {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: 600;
-    border: 2px solid #7289DA;
+.separator {
+width: 100%;
+height: 5px;
+background-color: #ffffff; /* Weißer Trennstrich */
+position: absolute;
+bottom: 0;
+left: 0;
+z-index: 1;
 }
 
-.maintenance-container a:hover {
-    background-color: rgba(114, 137, 218, 0.1);
+.down-arrow {
+position: absolute;
+bottom: 20px; /* Pfeil am unteren Rand */
+left: 50%;
+transform: translateX(-50%);
+font-size: 24px;
+color: white;
+cursor: pointer;
+z-index: 1000;
+transition: opacity 0.5s ease-in-out;
 }
 
-.maintenance-container a i {
-    margin-right: 8px;
+.down-arrow:hover {
+opacity: 0.7;
+}
+
+.main-title {
+margin: 100px 0 20px;
+text-align: center;
+font-size: 36px;
+color: white;
+font-weight: bold; /* Fett hervorgehoben */
+}
+
+.button-download,
+.button-discord {
+padding: 12px 24px; /* Größere Polsterung für bessere Benutzerfreundlichkeit */
+margin: 10px 0;
+border: 2px solid; /* Randfarbe anpassen */
+border-radius: 8px; /* Abgerundete Ecken */
+cursor: pointer;
+color: white;
+text-decoration: none;
+font-size: 18px; /* Größere Schriftgröße für bessere Lesbarkeit */
+transition: all 0.3s ease; /* Sanftere Übergänge */
+display: flex;
+align-items: center;
+justify-content: center;
+font-weight: bold;
+text-transform: uppercase; /* Text in Großbuchstaben */
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Schatten für Tiefe */
+}
+
+.button-download {
+background-color: transparent;
+border-color: white; /* Randfarbe für Download-Button */
+}
+
+.button-download i {
+margin-right: 8px; /* Abstand zwischen Icon und Text */
+}
+
+.button-download:hover {
+background-color: rgba(255, 255, 255, 0.1); /* Leichter Hintergrund beim Hover */
+transform: scale(1.05); /* Leichte Vergrößerung beim Hover */
+}
+
+.button-discord {
+background-color: #7289da;
+border-color: #7289da; /* Randfarbe für Discord-Button */
+}
+
+.button-discord i {
+margin-right: 8px; /* Abstand zwischen Icon und Text */
+}
+
+.button-discord:hover {
+background-color: #5f73a1; /* Hintergrundfarbe beim Hover */
+transform: scale(1.05); /* Leichte Vergrößerung beim Hover */
+}
+
+nav {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 20px;
+background-color: rgba(0, 0, 0, 0.7);
+position: fixed;
+width: 100%;
+top: 0;
+z-index: 1000;
+}
+
+nav .logo {
+flex: 1;
+}
+
+nav .logo img {
+height: 50px;
+}
+
+nav .nav-links {
+display: flex;
+list-style: none;
+flex: 2;
+justify-content: center;
+}
+
+nav .nav-links li {
+margin: 0 15px;
+position: relative;
+}
+
+nav .nav-links a {
+color: white;
+text-decoration: none;
+font-weight: 600;
+font-size: 18px;
+padding: 15px;
+transition: color 0.3s ease-in-out;
+}
+
+nav .nav-links a:hover {
+color: #00aaff;
+}
+
+nav .nav-links a.active::after {
+content: '';
+display: block;
+width: 75%;
+height: 2px;
+background-color: #00aaff;
+position: absolute;
+bottom: 0;
+left: 50%;
+transform: translateX(-50%);
+}
+
+nav .profile {
+display: flex;
+align-items: center;
+flex: 1;
+justify-content: flex-end;
+margin-right: 65px;
+}
+
+nav .profile i {
+font-size: 1.5rem;
+margin-right: 5px;
+transition: color 0.3s ease-in-out;
+}
+
+nav .profile a {
+color: white;
+text-decoration: none;
+font-weight: 600;
+margin-left: 5px;
+transition: color 0.3s ease-in-out;
+}
+
+nav .profile a:hover,
+nav .profile i:hover {
+color: #00aaff;
+}
+
+section {
+padding: 50px 20px;
+text-align: center;
+}
+
+.additional-sections-container {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 20px;
+padding: 50px 20px;
+}
+
+.additional-section {
+background-color: rgba(0, 0, 0, 0.5);
+padding: 30px;
+border-radius: 15px;
+max-width: 300px;
+text-align: left;
+border: 2px solid white; /* Weißer Rand */
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.additional-section img {
+width: 100px;
+height: 100px;
+border-radius: 15px;
+margin-bottom: 20px;
+}
+
+.additional-section .text-content h3 {
+color: #00aaff;
+margin: 0;
+font-size: 24px;
+margin-bottom: 10px;
+}
+
+.additional-section .text-content p {
+margin: 0;
+font-size: 16px;
+color: #ffffff;
+}
+
+.minigames-section {
+padding: 50px 20px;
+text-align: center;
+margin: 0 auto;
+max-width: 1200px;
+}
+
+.minigames-section h2 {
+font-size: 36px; /* Gleiche Größe wie „Unser Team“ */
+margin-bottom: 30px; /* Mehr Abstand zu den Minigames */
+color: white;
+}
+
+.minigames-grid {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 20px;
+}
+
+.minigame {
+background-color: rgba(0, 0, 0, 0.8);
+border-radius: 15px;
+padding: 20px;
+max-width: 250px;
+text-align: center;
+color: white;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.minigame img {
+width: 100%;
+height: auto;
+border-radius: 10px;
+margin-bottom: 10px;
+}
+
+.minigame h3 {
+font-size: 20px;
+margin: 10px 0;
+}
+
+.minigame a {
+color: #00aaff;
+text-decoration: none;
+font-size: 16px;
+transition: color 0.3s ease-in-out;
+}
+
+.minigame a:hover {
+text-decoration: underline;
+}
+
+.impressum-section {
+padding: 50px 20px;
+text-align: center;
+background-color: rgba(0, 0, 0, 0.8);
+}
+
+.impressum-section h2 {
+font-size: 36px;
+margin-bottom: 20px;
+color: #00aaff;
+}
+
+.impressum-section p {
+font-size: 18px;
+color: white;
+max-width: 800px;
+margin: 0 auto;
+text-align: left;
+}
+
+        .down-arrow {
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+            font-family: Arial, sans-serif; /* Arial Schriftart */
+        }
+
+footer {
+background-color: rgba(0, 0, 0, 0.8);
+color: white;
+text-align: center;
+padding: 20px;
+position: relative;
+width: 100%;
+bottom: 0;
+}
+
+footer p {
+margin: 10px 0;
+font-size: 14px;
+}
+
+footer a {
+color: #00aaff;
+text-decoration: none;
+font-weight: bold;
+}
+
+footer a:hover {
+text-decoration: underline;
 }
 </style>
 </head>
+
 <body>
+<nav>
+<div class="logo">
+<img src="https://i.postimg.cc/9XLqdFxj/craftportal.png" alt="Logo">
+</div>
+<ul class="nav-links">
+<li><a href="https://craftportal.net">Home</a></li>
+<li><a href="https://craftportal.net/news">News</a></li>
+<li><a href="https://craftportal.net/support">Support</a></li>
+</ul>
+<div class="profile">
+<i class="fa-solid fa-circle-user"></i>
+<a href="#anmelden">Anmelden</a>
+</div>
+</nav>
 
-<div class="background-image"></div>
-
-<div class="maintenance-container">
-    <img src="https://i.postimg.cc/9XLqdFxj/craftportal.png" alt="Logo">
-    <h1>Wartungsarbeiten2</h1>
-    <p>Unsere Webseite ist momentan wegen Wartungsarbeiten nicht verfügbar.</p>
-    <p>Wir sind bald wieder für dich da!</p>
-    <a href="https://discord.gg/HVM2psaapR" target="_blank">
-        <i class="fab fa-discord"></i> Besuche unseren Discord
-    </a>
+<div class="background-image-container">
+  <div class="background-image"></div>
+  <!-- Neuer Titel und Infotext links -->
+  <div class="background-info">
+    <h1>Construct & Conquer</h1>
+    <p>Ein Minigame, das deine Bau- und Kampfskills auf die Probe stellt!</p>
+  </div>
+  <div class="separator"></div>
+  <div class="down-arrow" onclick="scrollDown()">
+            &#9660;
+  </div>
 </div>
 
+<section class="impressum-section">
+  <h2>Construct & Conquer</h2>
+  <p><strong>Erklärung:</strong></p>
+  <p>
+    Willkommen zu <em>Battleground: Construct & Conquer</em>, einem actiongeladenen und strategischen Minigame, das deine Bau- und Kampfskills auf die Probe stellt! 
+    <br><br>
+    In diesem spannenden Team-basierten Spiel kannst du dir zunächst dein Team aussuchen. Deine Aufgabe ist es, Ressourcen in der Spielwelt zu sammeln, Kisten zu looten und dein Team durch cleveres Management von Materialien zu stärken. Doch das ist nur der Anfang! 
+    <br><br>
+    Jedes Team muss seinen <strong>Beacon</strong> an einem strategischen Ort platzieren und verteidigen – dieser Beacon ist das Herz deines Teams! Wenn euer Beacon zerstört wird, könnt ihr nicht mehr respawnen, ähnlich wie bei Bedwars mit dem Bett. Plane also klug und schütze ihn um jeden Preis!
+    <br><br>
+    <strong>Ziel:</strong> Verteidigt euren eigenen Beacon und zerstört die Beacons der gegnerischen Teams. Nur das Team, dessen Beacon zuletzt noch intakt ist, wird den ultimativen Sieg erringen!
+    <br><br>
+    <strong>Features:</strong>
+    <ul style="text-align: left;">
+      <p><strong>• Materialien sammeln:</strong> Lootet Kisten und baut Ressourcen ab, um eure Verteidigung zu stärken und Waffen herzustellen.</li>
+      <p><strong>• Beacon-Finder:</strong> Ein spezielles Item, das alle Beacons kurzzeitig zum Leuchten bringt, sodass du die gegnerischen Basen leichter aufspüren kannst.</li>
+      <p><strong>• Strategisches Platzieren:</strong> Finde den besten Ort, um deinen Beacon zu verstecken und optimal zu verteidigen.</li>
+      <p><strong>• Kämpfe und Erobern:</strong> Beweise dein Geschick im Kampf gegen andere Teams und zerstöre deren Beacons, um sie aus dem Spiel zu werfen.</li>
+      <p><strong>• Letztes Team gewinnt:</strong> Nur das Team, dessen Beacon unzerstört bleibt, wird am Ende als Sieger gekrönt!</li>
+    </ul>
+    Schnapp dir dein Team, erbeute Ressourcen, baue deine Verteidigung und erobere die Beacons der Gegner!<br>Jeder Moment zählt, also sei schnell, clever und bereit für den Sieg.<br><strong>Battleground: Construct & Conquer</strong> ist ein Minigame voller Action und Spannung – wer wird als Letzter übrig bleiben?
+    <br><br>
+    Bereit für den Kampf?
+  </p>
+</section>
+<main>
+
+<footer>
+<p>&copy; 2024 Craftportal. Alle Rechte vorbehalten.</p>
+<p><a href="https://craftportal.net/impressum">Impressum</a> | <a href="https://craftportal.net/datenschutz">Datenschutz</a></p>
+</footer>
+
+<script>
+function scrollDown() {
+document.querySelector('.impressum-section').scrollIntoView({
+behavior: 'smooth'
+});
+}
+</script>
+
 </body>
+
 </html>
